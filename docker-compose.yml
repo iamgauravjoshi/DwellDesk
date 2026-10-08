@@ -1,0 +1,19 @@
+services:
+  postgres:
+    image: postgres:18-alpine
+    container_name: pg_management-postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+    ports:
+      - "${POSTGRES_PORT}:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql
+
+volumes:
+  postgres_data:
+
+# docker run --name pgos-db -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=app_db -p 5435:5432 -d postgres:18-alpine
